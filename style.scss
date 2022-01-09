@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+// ? Lesson 1 
+  /*
+
+    - With normal transition and hover we only have 2 state (Normal and Animated state). But with animation--
+      we can have multiple state (Keyframes).
+
+    -  Forewards (Keyword in animation) --> Used to apply final state of styles from  the animation 
+
+
+
+  */
+
+.ls1 {
+  width: 600px;
+  margin: 20px auto;
+  display: flex;
+
+  div {
+     width: 200px;
+     height: 200px;
+     background: lightgrey;
+     margin: 5px;
+   }
+   .anim {
+    //   Can add multiple transitions timimgs for different properties
+     transition: border-radius 0.9s, background 0.5s;
+   }
+   .anim:hover {
+    background: red;
+    border-radius: 50%;
+   }
+
+   .anim1 {
+     transition: 0.5s;
+   }
+
+   .anim1:hover {
+     transform: scale(0.8) rotate(90deg);
+   }
+
+   .anim3 {
+     animation: exp-anim 1s forwards;
+   }
+
+   @keyframes exp-anim {
+    //  0% {
+
+    //  }
+
+    //  100% {
+
+    //  }
+
+    // If Our animation only have 2 state we can rename it to from & to
+
+    // from {
+    //   opacity: 1;
+    //   transform: scale(1);
+    // } 
+    
+    // to {
+    //   opacity: 0;
+    //   transform: scale(2);
+    // }
+    
+    //  Alternate way if multiple keyframe have same values. 👇
+
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    50% {
+      opacity: 0.5;
+      transform: scale(2);
+    }
+
+   }
+}
+
+/*
+
+  -- linear --> Flat Animation without any timing
+  -- ease (Default) --> Start with speed, Slows in the middle, End with Speed [ speed slow speed ]
+  -- ease-in --> starts slow and speeds up at end
+  -- ease-out stats fast and slow down.
+
+*/
+
+.ls2 {
+    --size:180px;
+    --ballSize:calc(var(--size)/3);
+    --ballEndPosition: calc(var(--size) - var(--ballSize));
+
+    display: grid;
+    place-items: center;
+    margin: 20px;
+    position: relative;
+
+  
+    
+    > div {
+      width: var(--size);
+      height: var(--size);
+      // background-color: lightblue;
+      &:hover .ball {
+        transform: translateY(var(--ballEndPosition)) translateX(-50%);
+      }
+    }
+
+    .ball {      
+      height: var(--ballSize);
+      width:  var(--ballSize);
+      background-color: coral;
+      border-radius: 50%;
+
+      top: 0;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+
+      transition: 0.4s;
+      animation: bouncing 0.8s infinite ease-in;  
+
+    }   
+
+    .shadow {
+      height: var(--ballSize);
+      width:  var(--ballSize);
+      background-color: hsla(0, 0%, 0%, 0.2);
+      border-radius: 50%;
+
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%) translateY(50%) scaleY(0.4 ) scaleX(1.2); 
+      animation: bouncing-shadow 0.8s infinite ease-in;  
+
+    }
+
+    @keyframes bouncing {
+      0%,100% {
+        transform: translateX(-50%);
+          
+      }
+
+      50% {
+        transform: translateY(var(--ballEndPosition)) translateX(-50%);
+        animation-timing-function: ease-out;
+      }
+    }
+    
+
+    @keyframes bouncing-shadow  {
+      0%,100% {
+        transform: translateX(-50%);
+        transform: translateX(-50%) translateY(50%) scaleY(0.4 ) scaleX(1.2); 
+          
+      }
+
+      50% {
+        transform: translateY(var(--ballEndPosition)) translateX(-50%);
+        animation-timing-function: ease-out;
+        background-color: hsla(0, 0%, 0%, 0.4);
+        transform: translateX(-50%) translateY(50%) scaleY(0.2 ) scaleX(0.6);   
+      }
+    }
+    
+}
