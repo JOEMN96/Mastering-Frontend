@@ -179,3 +179,40 @@ body {
     }
     
 }
+
+.ls3 {
+  & > div {
+    display: grid;
+    place-items: center;
+    margin: 50px 0;
+  }
+  button {
+    background: lightblue;
+    padding: 5px 10px;
+    border: 1px solid lightblue;
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+    transition: .3s;
+
+    &::after {
+      content: '';
+      height: 30px;
+      width: 102%;
+      left: 0;
+      top: 100%;
+      position: absolute;
+      background: lavender;
+      z-index: 1;
+      transform-origin: center bottom;
+      transform: skewY(10deg) scaleY(0);
+      transition: transform 0.4s;
+    }
+
+    &:hover {
+      &:after {
+        transform: skewY(0deg) scaleY(2);
+      }
+    }
+  }
+}
