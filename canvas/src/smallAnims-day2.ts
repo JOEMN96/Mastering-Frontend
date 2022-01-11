@@ -1,4 +1,3 @@
-import './style.css';
 let canvas = document.querySelector('canvas') as HTMLCanvasElement;
 let ctx = canvas.getContext('2d');
 
@@ -23,5 +22,3 @@ function draw(coords: MOUSE): void {
   ctx?.arc(coords!.x || 0, coords.y as number, 10, 0, Math.PI * 2);
   ctx?.stroke();
 }
-
-export { canvas };
