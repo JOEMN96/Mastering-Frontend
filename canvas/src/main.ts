@@ -42,14 +42,15 @@ class Particle {
     // this.y = mouse.y;
     this.x = Math.random() * canvas.width;
     this.y = Math.random() * canvas.height;
-    this.size = Math.floor(Math.random() * 6 + 1);
-    this.speedX = Math.floor(Math.random() * 2.5 - 1.5);
-    this.speedY = Math.floor(Math.random() * 2.5 - 1.5);
+    this.size = Math.floor(Math.random() * 16 + 1);
+    this.speedX = Math.floor(Math.random() * 3 - 1.5);
+    this.speedY = Math.floor(Math.random() * 3 - 1.5);
   }
 
   update() {
     this.x += this.speedX;
     this.y += this.speedY;
+    if (this.size > 0.2) this.size -= 0.1;
   }
 
   draw() {
@@ -62,8 +63,13 @@ class Particle {
 let particlesArr: Particle[] = [];
 
 (function () {
-  for (let i = 0; i < 101; i++) {
+  for (let i = 0; i < 10; i++) {
     particlesArr.push(new Particle());
+
+    if (particlesArr[i].size > 0.2) {
+      particlesArr.splice(i, 1);
+      i--;
+    }
   }
 })();
 
@@ -77,10 +83,12 @@ function particleEffect() {
 function animateParticle() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   particleEffect();
+  console.log(particlesArr);
+
   requestAnimationFrame(animateParticle);
 }
 
-animateParticle();
+// animateParticle();
 
 console.log(particlesArr);
 
