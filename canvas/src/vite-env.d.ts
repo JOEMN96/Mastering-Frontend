@@ -2,4 +2,5 @@
 interface MOUSE {
   x: null | number;
   y: null | number;
+  radius: number;
 }
