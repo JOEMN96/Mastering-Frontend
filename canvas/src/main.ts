@@ -28,4 +28,4 @@ ctx.fillText('JOE', canvas.width / 2 - 90, canvas.height / 2);
 
 export { canvas };
 
-// CAnvas is just a transparent layer with black background
+// CAnvas is just a transparent layer with black backgrounds
